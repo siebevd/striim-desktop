@@ -28,7 +28,7 @@ module.exports = webpackMerge(baseConfig, {
 	devtool: 'inline-source-map',
 
 	devServer: {
-		hot: true,
+		hot: false,
 		// enable HMR on the server
 
 		contentBase: resolve(__dirname,'../dist'),
