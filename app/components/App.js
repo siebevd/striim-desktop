@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setPlayState } from 'modules/player';
 import PropTypes from 'prop-types';
-import YouTube from 'react-youtube';
+import YouTubePlayer from 'components/YoutubePlayer/YoutubePlayer';
 
 class App extends Component {
 
@@ -13,17 +14,6 @@ class App extends Component {
 		ytId: null
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if(this.props.playing !== nextProps.playing && this.$player) {
-			// The playing has changed in the store
-			// so let's update the actual video
-			if (nextProps.playing) {
-				this.$player.playVideo();
-			} else {
-				this.$player.pauseVideo();
-			}
-		}
-	}
 
 	/**
 	 * Event Handlers
@@ -33,23 +23,21 @@ class App extends Component {
 		this.setState({ytId: this.$input.value});
 	}
 
-	videoReady = (ev) =>{
-		this.$player = ev.target;
-	}
+
 
 	/**
 	 * Renders
 	 */
 
 	render() {
-		console.log('is this playing', this.props.playing);
 		return (
 			<div>
 				<input ref={(r)=>this.$input=r} />
 				<button onClick={this.updateVideo}>update</button>
-				<YouTube
-					videoId={this.state.ytId}
-					onReady={this.videoReady}
+				<YouTubePlayer
+					ytId={this.state.ytId}
+					playing={this.props.playing}
+					setPlayState={this.props.setPlayState}
 				/>
 			</div>
 		)
@@ -58,6 +46,7 @@ class App extends Component {
 
 App.propTypes = {
 	playing: PropTypes.bool.isRequired,
+	setPlayState: PropTypes.func.isRequired
 }
 
 // NOTE: the connect should probabl be moved outside of this file
@@ -66,5 +55,7 @@ export default  connect(
 	(state)=>({
 		playing: state.player.playing
 	}),
-	()=>({})
+	(dispatch)=>({
+		setPlayState: (playing) => dispatch(setPlayState(playing))
+	})
 )(App)
