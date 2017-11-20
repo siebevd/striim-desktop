@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import s from './YoutubePlayer.css';
 import YouTube from 'react-youtube';
 
 export default class YoutubePlayer extends Component {
@@ -72,12 +73,28 @@ export default class YoutubePlayer extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className={s.container}>
 				<YouTube
 					videoId={this.props.ytId}
 					onReady={this.videoReady}
 					onStateChange={this.videoStateChange}
 					onEnd={this.videoEnded}
+					className={s.player}
+					opts={{
+						playerVars: {
+							autohide: 1,
+							cc_load_policy: 0,
+							autoplay: 1,
+							showinfo:0,
+							controls:0,
+							// controls: 1,
+							rel: 0,
+							wmode:'transparent',
+							modestbranding: 1,
+							iv_load_policy: 3,
+							suggestedQuality: 'hd1080'
+						}
+					}}
 				/>
 			</div>
 		)

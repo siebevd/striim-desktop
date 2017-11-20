@@ -10,8 +10,11 @@ the app uses electron
 
 
 ## Todo
-[ ] Connect player to store (play/pause)
-[ ] Playlist functionality
-[ ] save playlist for restarts
+[x] Connect player to store (play/pause)
+[x] Playlist functionality
+[x] save playlist for restarts
 [ ] custom window
+[ ] change active video
+[ ] search for youtube title
+[ ] add in youtube playlist functionality
 [ ] design

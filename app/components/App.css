@@ -1,0 +1,15 @@
+
+/* ------------- */
+/*    Base UI    */
+/* ------------- */
+
+body {
+	margin: 0;
+}
+
+.titleBar {
+	/*background: red;*/
+	width: 100%;
+	height: 30px;
+	-webkit-app-region: drag;
+}
