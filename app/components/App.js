@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import '../styling/reset.css';
 import s from './App.css';
 import YouTubePlayer from 'components/YoutubePlayer/YoutubePlayer';
+import Controls from 'components/Controls/Controls';
 
 class App extends Component {
 
@@ -43,6 +44,7 @@ class App extends Component {
 					playing={this.props.playing}
 					setPlayState={this.props.setPlayState}
 				/>
+				<Controls />
 				<input ref={(r)=>this.$input=r} />
 				<button onClick={this.updateVideo}>update</button>
 				{this.props.playlists['main'].items.map((item, index)=>{

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import s from './YoutubePlayer.css';
+import styles from './YoutubePlayer.css';
 import YouTube from 'react-youtube';
 
 export default class YoutubePlayer extends Component {
@@ -73,13 +73,13 @@ export default class YoutubePlayer extends Component {
 
 	render() {
 		return (
-			<div className={s.container}>
+			<div className={styles.container}>
 				<YouTube
 					videoId={this.props.ytId}
 					onReady={this.videoReady}
 					onStateChange={this.videoStateChange}
 					onEnd={this.videoEnded}
-					className={s.player}
+					className={styles.player}
 					opts={{
 						playerVars: {
 							autohide: 1,
