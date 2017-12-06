@@ -1,30 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import { AppContainer } from 'react-hot-loader';
 import initThreadConnector from './utils/connector';
-import reducers from './modules';
-import persistState from 'redux-localstorage'
-
 import VisibleApp from './components/App.js';
+import { useStrict } from 'mobx';
+import { Provider } from 'mobx-react';
 
-//
-const store = createStore(
-	reducers,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-	compose(
-		applyMiddleware(thunk),
-		persistState()
-	)
-);
+import playlistStore from './stores/playlistStore';
+import searchStore from './stores/searchStore';
+
+
+
+// Combine the stores
+const stores = {
+	playlistStore,
+	searchStore
+}
+
+window._____APP_STATE_____ = stores;
+
+
+// Connect Web App to the Application
+initThreadConnector(stores);
 
 // AppContainer is a necessary wrapper component for HMR
 const render = (Component) => {
 	ReactDOM.render(
 		<AppContainer>
-			<Provider store={store}>
+			<Provider {...stores}>
 				<Component/>
 			</Provider>
 		</AppContainer>,
@@ -32,20 +35,12 @@ const render = (Component) => {
 	);
 };
 
-// Connect
-initThreadConnector(store);
+// Start the render of the app
+render(VisibleApp);
 
-// document.onreadystatechange = function () {
-	// if (document.readyState == "complete") {
-
-		render(VisibleApp);
-
-		// Hot Module Replacement API
-		if (module.hot) {
-			module.hot.accept('./components/App', () => {
-				render(VisibleApp)
-			});
-		}
-
-	// }
-// };
+// Hot Module Replacement API
+if (module.hot) {
+	module.hot.accept('./components/App', () => {
+		render(VisibleApp)
+	});
+}

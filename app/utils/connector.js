@@ -17,5 +17,5 @@ export default function initThreadConnector(s) {
 
 ipcRenderer.on('playpause', (event, play) => {
 	// toggle the play event
-	store.dispatch(togglePlay());
+	// store.dispatch(togglePlay());
 })

@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { setPlayState } from 'modules/player';
-import { addVideoToPlaylist, removeVideoFromPlaylist } from 'modules/playlists';
 import PropTypes from 'prop-types';
 import '../styling/reset.css';
 import s from './App.css';
 import YouTubePlayer from 'components/YoutubePlayer/YoutubePlayer';
+import Playlist from 'components/Playlist/Playlist';
 import Controls from 'components/Controls/Controls';
+import DevTools from 'mobx-react-devtools';
 
+import { inject, observer } from 'mobx-react';
+
+
+
+@inject('playlistStore')
+@observer
 class App extends Component {
 
 	/**
 	 * Lifecycle
 	 */
-
-	state = {
-		ytId: null
-	}
+	//
+	// state = {
+	// 	ytId: null
+	// }
 
 
 	/**
 	 * Event Handlers
 	 */
-
-	updateVideo = () => {
-		// Add video to playlist
-		this.props.addVideoToPlaylist('main', this.$input.value);
-		// this.setState({ytId: this.$input.value});
-	}
 
 
 
@@ -36,6 +35,19 @@ class App extends Component {
 	 */
 
 	render() {
+		const { list } = this.props.playlistStore;
+
+		console.log('this.props', this.props);
+
+		return (
+			<div>
+				<div className={s.titleBar} />
+				<DevTools />
+				<Playlist />
+			</div>
+		);
+
+
 		return (
 			<div>
 				<div className={s.titleBar} />
@@ -61,23 +73,25 @@ class App extends Component {
 }
 
 App.propTypes = {
-	playing: PropTypes.bool.isRequired,
-	setPlayState: PropTypes.func.isRequired,
-	addVideoToPlaylist: PropTypes.func.isRequired,
-	removeVideoFromPlaylist: PropTypes.func.isRequired,
-	playlists: PropTypes.object.isRequired
+	// playing: PropTypes.bool.isRequired,
+	// setPlayState: PropTypes.func.isRequired,
+	// addVideoToPlaylist: PropTypes.func.isRequired,
+	// removeVideoFromPlaylist: PropTypes.func.isRequired,
+	// playlists: PropTypes.object.isRequired
 }
+
+export default App;
 
 // NOTE: the connect should probabl be moved outside of this file
 // again and coded nicer
-export default  connect(
-	(state)=>({
-		playing: state.player.playing,
-		playlists: state.playlists
-	}),
-	(dispatch)=>({
-		setPlayState: (playing) => dispatch(setPlayState(playing)),
-		addVideoToPlaylist: (playlistId, video) => dispatch(addVideoToPlaylist(playlistId, video)),
-		removeVideoFromPlaylist: (playlistId, index) => dispatch(removeVideoFromPlaylist(playlistId, index))
-	})
-)(App)
+// export default  connect(
+// 	(state)=>({
+// 		playing: state.player.playing,
+// 		playlists: state.playlists
+// 	}),
+// 	(dispatch)=>({
+// 		setPlayState: (playing) => dispatch(setPlayState(playing)),
+// 		addVideoToPlaylist: (playlistId, video) => dispatch(addVideoToPlaylist(playlistId, video)),
+// 		removeVideoFromPlaylist: (playlistId, index) => dispatch(removeVideoFromPlaylist(playlistId, index))
+// 	})
+// )(App)
