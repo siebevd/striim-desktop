@@ -13,6 +13,8 @@ the app uses electron
 [x] Connect player to store (play/pause)
 [x] Playlist functionality
 [x] save playlist for restarts
+[ ] possibility to paste in youtube id
+[ ] add linter
 [ ] custom window
 [ ] change active video
 [ ] search for youtube title

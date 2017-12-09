@@ -1,6 +1,12 @@
-const {app, BrowserWindow, globalShortcut } = require('electron')
-const path = require('path')
-const url = require('url')
+const {
+	app,
+	BrowserWindow,
+	globalShortcut,
+	clipboard }               = require('electron');
+const path                  = require('path');
+const url                   = require('url');
+const electronLocalshortcut = require('electron-localshortcut');
+
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -57,14 +63,20 @@ app.on('ready', () =>{
 		win.webContents.send('playpause', 'toggle');
 		// Do stuff when Y and either Command/Control is pressed.
 	});
+
+	electronLocalshortcut.register(win, 'CommandOrControl+V', () => {
+		// Catch the paste command and send it to the window
+		win.webContents.send('paste', clipboard.readText());
+	});
+
 })
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
-  // On macOS it is common for applications and their menu bar
+  // On macOS it is common for applications and their menu b ar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
 })
 

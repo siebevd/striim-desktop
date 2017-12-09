@@ -19,3 +19,10 @@ ipcRenderer.on('playpause', (event, play) => {
 	// toggle the play event
 	// store.dispatch(togglePlay());
 });
+
+ipcRenderer.on('paste', (event, text) => {
+	// TODO: validate the text
+	// TODO: do a youtube call to get the info about that video
+	// TODO: add it to the queue
+	console.log('what is the pasted text', text);
+})
