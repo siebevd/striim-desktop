@@ -6,9 +6,15 @@ import VisibleApp from './components/App.js';
 import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 
-import playlistStore from './stores/playlistStore';
-import searchStore from './stores/searchStore';
+import PlaylistStore from './stores/playlistStore';
+import SearchStore from './stores/searchStore';
 
+
+const playlistStore = new PlaylistStore(JSON.parse(localStorage.getItem('playlist') || '{}'));
+const searchStore = new SearchStore();
+
+// Save changes to the store in Localstorage
+playlistStore.subscribeLocalstorageToStore();
 
 
 // Combine the stores

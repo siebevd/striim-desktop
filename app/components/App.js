@@ -37,8 +37,6 @@ class App extends Component {
 	render() {
 		const { list } = this.props.playlistStore;
 
-		console.log('this.props', this.props);
-
 		return (
 			<div>
 				<div className={s.titleBar} />

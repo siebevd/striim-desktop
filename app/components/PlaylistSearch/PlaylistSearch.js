@@ -27,8 +27,6 @@ class PlaylistSearch extends Component {
 	render() {
 		const { loading, results } = this.props.searchStore;
 
-		console.log('what are the results', results);
-
 		return (
 			<div>
 				<input ref={(r)=>this.$input=r} />

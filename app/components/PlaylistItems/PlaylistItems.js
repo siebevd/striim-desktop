@@ -5,6 +5,7 @@ import { inject, observer } from 'mobx-react';
 @observer
 class PlaylistItems extends Component {
 
+
 	/**
 	 * Event Handlers
 	 */
@@ -25,7 +26,7 @@ class PlaylistItems extends Component {
 
 		return (
 			<div>
-				{this.props.items.values().map((item)=>{
+				{this.props.items.map((item)=>{
 					// console.log('what is item', item);
 					return <p key={item.name}>{item.name}</p>
 				})}

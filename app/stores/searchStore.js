@@ -22,4 +22,4 @@ class SearchStore {
 
 }
 
-export default new SearchStore();
+export default SearchStore;
