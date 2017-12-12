@@ -6,10 +6,10 @@ the app uses electron
 ## Usage
 
 1. run `npm install` to install all dependencies
-1.1 install electron globally so you can run the `electron` command (`npm install -g electron`)
-2. create `config.js` file (copy it from `copy.example.js` and fill in all the fields)
-3. run `npm run dev`
-4. run `npm run start` in a separate window
+2. install electron globally so you can run the `electron` command (`npm install -g electron`)
+3. create `config.js` file (copy it from `copy.example.js` and fill in all the fields)
+4. run `npm run dev`
+5. run `npm run start` in a separate window
 
 
 ## Todo
