@@ -8,10 +8,12 @@ import { Provider } from 'mobx-react';
 
 import PlaylistStore from './stores/playlistStore';
 import SearchStore from './stores/searchStore';
+import PlayerStore from './stores/PlayerStore';
 
 
 const playlistStore = new PlaylistStore(JSON.parse(localStorage.getItem('playlist') || '{}'));
 const searchStore = new SearchStore();
+const playerStore = new PlayerStore();
 
 // Save changes to the store in Localstorage
 playlistStore.subscribeLocalstorageToStore();
@@ -20,8 +22,9 @@ playlistStore.subscribeLocalstorageToStore();
 // Combine the stores
 const stores = {
 	playlistStore,
-	searchStore
-}
+	searchStore,
+	playerStore
+};
 
 window._____APP_STATE_____ = stores;
 

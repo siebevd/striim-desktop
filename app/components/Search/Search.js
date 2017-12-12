@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-
+import styles from './Search.css';
 
 @inject('searchStore','playlistStore')
 @observer
@@ -15,7 +15,9 @@ class PlaylistSearch extends Component {
 	}
 
 	addItem = (result) => {
-		this.props.addItem(result.id.videoId);
+		// Get info from the result
+		console.log('what info can we gather', result);
+		this.props.addItem(result);
 	}
 
 
@@ -26,14 +28,13 @@ class PlaylistSearch extends Component {
 
 	render() {
 		const { loading, results } = this.props.searchStore;
-
 		return (
-			<div>
+			<div className={styles.container}>
 				<input ref={(r)=>this.$input=r} />
 				<button onClick={this.updateVideo}>search</button>
 				{loading && 'loading...'}
 				{results.map((result)=>(
-					<div key={`${result.id.videoId}-result`} onClick={this.addItem.bind(this,result)}>{result.snippet.title}</div>
+					<div key={`${result.id}-result`} onClick={this.addItem.bind(this,result)}><img src={result.thumb} />{result.title} - {result.artist}</div>
 				))}
 			</div>
 		);

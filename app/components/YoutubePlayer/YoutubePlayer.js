@@ -92,7 +92,8 @@ export default class YoutubePlayer extends Component {
 							wmode:'transparent',
 							modestbranding: 1,
 							iv_load_policy: 3,
-							suggestedQuality: 'hd1080'
+							suggestedQuality: 'hd1080',
+							mute: true
 						}
 					}}
 				/>

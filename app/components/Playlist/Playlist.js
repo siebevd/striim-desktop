@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import PlaylistSearch from 'components/PlaylistSearch/PlaylistSearch';
 import PlaylistItems from 'components/PlaylistItems/PlaylistItems';
 
 
-@inject('playlistStore')
+@inject('playlistStore','playerStore')
 @observer
 class Playlist extends Component {
 
@@ -16,8 +15,8 @@ class Playlist extends Component {
 		this.props.playlistStore.addItem(this.$input.value);
 	}
 
-	addItem = (result) => {
-		this.props.playlistStore.addItem(result);
+	removeItem = (index) => {
+		this.props.playlistStore.removeItemByIndex(index);
 	}
 
 	/**
@@ -27,10 +26,13 @@ class Playlist extends Component {
 	render() {
 		const { list } = this.props.playlistStore;
 
+		if (!this.props.playerStore.playlistVisible) {
+			return null
+		}
+
 		return (
 			<div>
-				<PlaylistSearch addItem={this.addItem} />
-				<PlaylistItems items={list} />
+				<PlaylistItems items={list} removeItem={this.removeItem}/>
 			</div>
 		);
 	}

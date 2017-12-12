@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../styling/variables.css';
 import '../styling/reset.css';
 import s from './App.css';
 import YouTubePlayer from 'components/YoutubePlayer/YoutubePlayer';
 import Playlist from 'components/Playlist/Playlist';
-import Controls from 'components/Controls/Controls';
+import Search from 'components/Search/Search';
+import InfoBar from 'components/InfoBar/InfoBar';
 import DevTools from 'mobx-react-devtools';
 
 import { inject, observer } from 'mobx-react';
 
 
 
-@inject('playlistStore')
+@inject('playlistStore','playerStore')
 @observer
 class App extends Component {
 
@@ -28,45 +30,60 @@ class App extends Component {
 	 * Event Handlers
 	 */
 
+	addItem = (result) => {
+		this.props.playlistStore.addItem(result);
+	}
 
+	setPlayState = (playState) => {
+		this.props.playerStore.setPlayState(playState);
+	}
 
 	/**
 	 * Renders
 	 */
 
 	render() {
-		const { list } = this.props.playlistStore;
+		const { list, activeItem } = this.props.playlistStore;
+		const { playing } = this.props.playerStore;
 
-		return (
-			<div>
-				<div className={s.titleBar} />
-				<DevTools />
-				<Playlist />
-			</div>
-		);
-
+		console.log('this is the playlistStore', this.props.playlistStore)
 
 		return (
 			<div>
 				<div className={s.titleBar} />
 				<YouTubePlayer
-					ytId={this.props.playlists['main'].items[0]}
-					playing={this.props.playing}
-					setPlayState={this.props.setPlayState}
+					ytId={activeItem.id}
+					playing={playing}
+					setPlayState={this.setPlayState}
 				/>
-				<Controls />
-				<input ref={(r)=>this.$input=r} />
-				<button onClick={this.updateVideo}>update</button>
-				{this.props.playlists['main'].items.map((item, index)=>{
-					return (
-						<div key={item}>
-							{item}
-							<button onClick={()=>this.props.removeVideoFromPlaylist('main', index)}>Remove</button>
-						</div>
-					)
-				})}
+				<Search addItem={this.addItem}/>
+				<DevTools />
+				<Playlist />
+				<InfoBar />
 			</div>
-		)
+		);
+
+
+		// return (
+		// 	<div>
+		// 		<div className={s.titleBar} />
+		// 		<YouTubePlayer
+		// 			ytId={this.props.playlists['main'].items[0]}
+		// 			playing={this.props.playing}
+		// 			setPlayState={this.props.setPlayState}
+		// 		/>
+		// 		<input ref={(r)=>this.$input=r} />
+		// 		<button onClick={this.updateVideo}>update</button>
+		// 		{this.props.playlists['main'].items.map((item, index)=>{
+		// 			return (
+		// 				<div key={item}>
+		// 					{item}
+		// 					<button onClick={()=>this.props.removeVideoFromPlaylist('main', index)}>Remove</button>
+		// 				</div>
+		// 			)
+		// 		})}
+		// 	</div>
+		// )
 	}
 }
 

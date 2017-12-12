@@ -3,8 +3,8 @@ module.exports = {
 		'postcss-import': {
 			path: __dirname + '/src'
 		},
-		'postcss-cssnext': {
-			browsers: ['last 2 versions', '> 5%'],
-		}
+		// 'postcss-cssnext': {
+		// 	browsers: ['last 2 versions', '> 5%'],
+		// }
   },
 };

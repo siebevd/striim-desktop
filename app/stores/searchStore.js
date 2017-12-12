@@ -14,9 +14,18 @@ class SearchStore {
 		searchYT(query)
 			.then(action((data)=>{
 				console.log('this is the response', data.items);
+				// Make it a general format, so we can easily plugin
+				// other sources in the future
+				const newItems = data.items.map((item)=>({
+					id: item.id.videoId,
+					title: item.snippet.title,
+					thumb: item.snippet.thumbnails.default.url,
+					artist: item.snippet.channelTitle,
+					type: 'youtube'
+				}))
 				// Loading finished
 				this.loading = false;
-				this.results.replace(data.items);
+				this.results.replace(newItems);
 			}))
 	}
 
