@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
-import PlaylistItems from 'components/PlaylistItems/PlaylistItems';
+import React, { Component } from "react";
+import { inject, observer } from "mobx-react";
+import PlaylistItems from "components/PlaylistItems/PlaylistItems";
 
-
-@inject('playlistStore','playerStore')
+@inject("playlistStore", "playerStore")
 @observer
 class Playlist extends Component {
-
 	/**
 	 * Event Handlers
 	 */
 
 	updateVideo = () => {
 		this.props.playlistStore.addItem(this.$input.value);
-	}
+	};
 
-	removeItem = (index) => {
+	removeItem = index => {
 		this.props.playlistStore.removeItemByIndex(index);
-	}
+	};
 
 	/**
 	 * Renders
@@ -27,12 +25,12 @@ class Playlist extends Component {
 		const { list } = this.props.playlistStore;
 
 		if (!this.props.playerStore.playlistVisible) {
-			return null
+			return null;
 		}
 
 		return (
 			<div>
-				<PlaylistItems items={list} removeItem={this.removeItem}/>
+				<PlaylistItems items={list} removeItem={this.removeItem} />
 			</div>
 		);
 	}

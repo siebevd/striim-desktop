@@ -1,23 +1,19 @@
-
 //
 //  Actions
 //
-const ADD_VIDEO = 'playlists/ADD_VIDEO';
-const REMOVE_VIDEO = 'playlists/REMOVE_VIDEO';
-
+const ADD_VIDEO = "playlists/ADD_VIDEO";
+const REMOVE_VIDEO = "playlists/REMOVE_VIDEO";
 
 //
 //  Initial State
 //
 
-
 const initialState = {
-	'main': {
-		name: 'Main',
+	main: {
+		name: "Main",
 		items: []
 	}
 };
-
 
 //
 // Reducer
@@ -26,22 +22,22 @@ export default function player(state = initialState, action = {}) {
 	let newLists;
 	switch (action.type) {
 		case ADD_VIDEO:
-			newLists = {...state};
+			newLists = { ...state };
 			newLists[action.playlistId] = {
 				...newLists[action.playlistId],
 				items: [].concat(...newLists[action.playlistId].items, [action.video])
-			}
+			};
 			return newLists;
 
 		case REMOVE_VIDEO:
-			newLists = {...state};
+			newLists = { ...state };
 			let newItems = [].concat(...newLists[action.playlistId].items);
 			// Remove the items
 			newItems.splice(action.index, 1);
 			newLists[action.playlistId] = {
 				...newLists[action.playlistId],
 				items: newItems
-			}
+			};
 			return newLists;
 
 		default:
@@ -53,13 +49,12 @@ export default function player(state = initialState, action = {}) {
 // Action Dispatchers
 //
 
-
 export function addVideoToPlaylist(playlistId, video) {
 	return {
 		type: ADD_VIDEO,
 		playlistId,
 		video
-	}
+	};
 }
 
 export function removeVideoFromPlaylist(playlistId, index) {
@@ -67,5 +62,5 @@ export function removeVideoFromPlaylist(playlistId, index) {
 		type: REMOVE_VIDEO,
 		playlistId,
 		index
-	}
+	};
 }

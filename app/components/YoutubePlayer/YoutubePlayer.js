@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styles from './YoutubePlayer.css';
-import YouTube from 'react-youtube';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import styles from "./YoutubePlayer.css";
+import YouTube from "react-youtube";
 
 export default class YoutubePlayer extends Component {
-
 	/**
 	 * Lifecycle
 	 */
 
 	componentWillReceiveProps(nextProps) {
-		if(this.playing !== nextProps.playing && this.$player) {
+		if (this.playing !== nextProps.playing && this.$player) {
 			// The playing has changed in the store
 			// so let's update the actual video
 			if (nextProps.playing) {
@@ -27,13 +26,12 @@ export default class YoutubePlayer extends Component {
 	 * Event Handlers
 	 */
 
-	videoReady = (ev) => {
+	videoReady = ev => {
 		this.$player = ev.target;
-	}
+	};
 
-	videoStateChange = (ev) => {
-
-		switch(ev.data) {
+	videoStateChange = ev => {
+		switch (ev.data) {
 			case -1: // Not Started
 				break;
 			case 0: // Ended
@@ -59,13 +57,9 @@ export default class YoutubePlayer extends Component {
 			case 5: // cued
 				break;
 		}
+	};
 
-
-	}
-
-
-	videoEnded = (ev) => {
-	}
+	videoEnded = ev => {};
 
 	/**
 	 * Renders
@@ -85,20 +79,20 @@ export default class YoutubePlayer extends Component {
 							autohide: 1,
 							cc_load_policy: 0,
 							autoplay: 1,
-							showinfo:0,
-							controls:0,
+							showinfo: 0,
+							controls: 0,
 							// controls: 1,
 							rel: 0,
-							wmode:'transparent',
+							wmode: "transparent",
 							modestbranding: 1,
 							iv_load_policy: 3,
-							suggestedQuality: 'hd1080',
+							suggestedQuality: "hd1080",
 							mute: true
 						}
 					}}
 				/>
 			</div>
-		)
+		);
 	}
 }
 
@@ -106,4 +100,4 @@ YoutubePlayer.propTypes = {
 	playing: PropTypes.bool.isRequired,
 	setPlayState: PropTypes.func.isRequired,
 	ytId: PropTypes.string
-}
+};

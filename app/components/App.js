@@ -1,22 +1,19 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import '../styling/variables.css';
-import '../styling/reset.css';
-import s from './App.css';
-import YouTubePlayer from 'components/YoutubePlayer/YoutubePlayer';
-import Playlist from 'components/Playlist/Playlist';
-import Search from 'components/Search/Search';
-import InfoBar from 'components/InfoBar/InfoBar';
-import DevTools from 'mobx-react-devtools';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "../styling/variables.css";
+import "../styling/reset.css";
+import s from "./App.css";
+import YouTubePlayer from "components/YoutubePlayer/YoutubePlayer";
+import Playlist from "components/Playlist/Playlist";
+import Search from "components/Search/Search";
+import InfoBar from "components/InfoBar/InfoBar";
+import DevTools from "mobx-react-devtools";
 
-import { inject, observer } from 'mobx-react';
+import { inject, observer } from "mobx-react";
 
-
-
-@inject('playlistStore','playerStore')
+@inject("playlistStore", "playerStore")
 @observer
 class App extends Component {
-
 	/**
 	 * Lifecycle
 	 */
@@ -25,18 +22,17 @@ class App extends Component {
 	// 	ytId: null
 	// }
 
-
 	/**
 	 * Event Handlers
 	 */
 
-	addItem = (result) => {
+	addItem = result => {
 		this.props.playlistStore.addItem(result);
-	}
+	};
 
-	setPlayState = (playState) => {
+	setPlayState = playState => {
 		this.props.playerStore.setPlayState(playState);
-	}
+	};
 
 	/**
 	 * Renders
@@ -46,7 +42,7 @@ class App extends Component {
 		const { list, activeItem } = this.props.playlistStore;
 		const { playing } = this.props.playerStore;
 
-		console.log('this is the playlistStore', this.props.playlistStore)
+		console.log("this is the playlistStore", this.props.playlistStore);
 
 		return (
 			<div>
@@ -56,13 +52,12 @@ class App extends Component {
 					playing={playing}
 					setPlayState={this.setPlayState}
 				/>
-				<Search addItem={this.addItem}/>
+				<Search addItem={this.addItem} />
 				<DevTools />
 				<Playlist />
 				<InfoBar />
 			</div>
 		);
-
 
 		// return (
 		// 	<div>
@@ -93,7 +88,7 @@ App.propTypes = {
 	// addVideoToPlaylist: PropTypes.func.isRequired,
 	// removeVideoFromPlaylist: PropTypes.func.isRequired,
 	// playlists: PropTypes.object.isRequired
-}
+};
 
 export default App;
 

@@ -1,23 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import initThreadConnector from './utils/connector';
-import VisibleApp from './components/App.js';
-import { useStrict } from 'mobx';
-import { Provider } from 'mobx-react';
+import React from "react";
+import ReactDOM from "react-dom";
+import { AppContainer } from "react-hot-loader";
+import initThreadConnector from "./utils/connector";
+import VisibleApp from "./components/App.js";
+import { useStrict } from "mobx";
+import { Provider } from "mobx-react";
 
-import PlaylistStore from './stores/playlistStore';
-import SearchStore from './stores/searchStore';
-import PlayerStore from './stores/PlayerStore';
+import PlaylistStore from "./stores/playlistStore";
+import SearchStore from "./stores/searchStore";
+import PlayerStore from "./stores/PlayerStore";
 
-
-const playlistStore = new PlaylistStore(JSON.parse(localStorage.getItem('playlist') || '{}'));
+const playlistStore = new PlaylistStore(
+	JSON.parse(localStorage.getItem("playlist") || "{}")
+);
 const searchStore = new SearchStore();
 const playerStore = new PlayerStore();
 
 // Save changes to the store in Localstorage
 playlistStore.subscribeLocalstorageToStore();
-
 
 // Combine the stores
 const stores = {
@@ -28,19 +28,18 @@ const stores = {
 
 window._____APP_STATE_____ = stores;
 
-
 // Connect Web App to the Application
 initThreadConnector(stores);
 
 // AppContainer is a necessary wrapper component for HMR
-const render = (Component) => {
+const render = Component => {
 	ReactDOM.render(
 		<AppContainer>
 			<Provider {...stores}>
-				<Component/>
+				<Component />
 			</Provider>
 		</AppContainer>,
-		document.getElementById('root')
+		document.getElementById("root")
 	);
 };
 
@@ -49,7 +48,7 @@ render(VisibleApp);
 
 // Hot Module Replacement API
 if (module.hot) {
-	module.hot.accept('./components/App', () => {
-		render(VisibleApp)
+	module.hot.accept("./components/App", () => {
+		render(VisibleApp);
 	});
 }

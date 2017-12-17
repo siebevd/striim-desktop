@@ -1,6 +1,5 @@
-import CONFIG from '../../config.js';
+import CONFIG from "../../config.js";
 const apiBase = `https://www.googleapis.com/youtube/v3`;
-
 
 // export const getYTVideoDetails = (ytId) => {
 //
@@ -16,7 +15,10 @@ const apiBase = `https://www.googleapis.com/youtube/v3`;
 //
 // };
 
-export const searchYT = (query) => {
-	return fetch(`${apiBase}/search?key=${CONFIG.google.apiKey}&type=video&maxResults=25&part=snippet&q=${query}`)
-		.then((res)=>res.json())
-}
+export const searchYT = query => {
+	return fetch(
+		`${apiBase}/search?key=${
+			CONFIG.google.apiKey
+		}&type=video&maxResults=25&part=snippet&q=${query}`
+	).then(res => res.json());
+};

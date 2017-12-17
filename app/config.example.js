@@ -1,5 +1,5 @@
 module.exports = {
 	google: {
-		apiKey: '<your-api-key>'
+		apiKey: "<your-api-key>"
 	}
-}
+};

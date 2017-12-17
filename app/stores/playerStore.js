@@ -1,18 +1,18 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action, computed } from "mobx";
 
 class PlayerStore {
-
 	@observable playlistVisible = false;
 	@observable playing = false;
 
-	@action togglePlaylistVisible() {
+	@action
+	togglePlaylistVisible() {
 		this.playlistVisible = !this.playlistVisible;
 	}
 
-	@action setPlayState(playing) {
+	@action
+	setPlayState(playing) {
 		this.playing = playing;
 	}
-
 }
 
 export default PlayerStore;

@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styles from './Controls.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import styles from "./Controls.css";
 
 export default class Controls extends Component {
-
 	/**
 	 * Lifecycle
 	 */
-
 
 	/**
 	 * Event Handlers
@@ -18,13 +16,8 @@ export default class Controls extends Component {
 	 */
 
 	render() {
-		return (
-			<div className={styles.container}>
-				These will be the controls
-			</div>
-		)
+		return <div className={styles.container}>These will be the controls</div>;
 	}
 }
 
-Controls.propTypes = {
-}
+Controls.propTypes = {};
