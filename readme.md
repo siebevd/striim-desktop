@@ -1,26 +1,30 @@
 # Striim
 
-WIP
-the app uses electron
-
-## Usage
-
-1. run `npm install` to install all dependencies
-2. install electron globally so you can run the `electron` command (`npm install -g electron`)
-3. create `config.js` file (copy it from `copy.example.js` and fill in all the fields)
-4. run `npm run dev`
-5. run `npm run start` in a separate window
+*WIP* | Mac (Electron) App to Watch/Listen to youtube videos. Ability to control videos through keyboard shortcuts 🎧
 
 
-## Todo
-- [x] Connect player to store (play/pause)
-- [x] Playlist functionality
-- [x] save playlist for restarts
-- [ ] Connect play/pause button to store
-- [ ] possibility to paste in youtube id
-- [ ] add linter
-- [ ] custom window
-- [ ] change active video
-- [ ] search for youtube title
-- [ ] add in youtube playlist functionality
-- [ ] design
+## Build Setup
+```
+# Install dependencies
+npm install
+
+# Install Electron Globally (not required)
+npm install -g Electron
+
+# Create config.js file
+cp config.example.js config.js
+
+# Fill in api details in config.js file
+
+# Compile (& watch) js bundle
+npm run dev
+
+# Build Electron app (in separate window from the dev command)
+npm run start
+
+# Prettier the code
+npm run pretty
+```
+
+## Other Notes
+`Prettier` will automatically be run as a precommit hook.
