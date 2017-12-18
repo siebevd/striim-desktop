@@ -49,4 +49,8 @@ class PlaylistStore {
 	}
 }
 
-export default PlaylistStore;
+const playlistStore = new PlaylistStore(
+	JSON.parse(localStorage.getItem("playlist") || "{}")
+);
+
+export default playlistStore;

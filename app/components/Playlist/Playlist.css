@@ -1,0 +1,9 @@
+/*-----------*/
+/*    Base   */
+/*-----------*/
+
+.container {
+	width: var(--playlistWidth);
+	height: 65px;
+	background: var(--darkBackground);
+}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import PlaylistItems from "components/PlaylistItems/PlaylistItems";
-
+import styles from "./Playlist.css";
 @inject("playlistStore", "playerStore")
 @observer
 class Playlist extends Component {
@@ -24,12 +24,14 @@ class Playlist extends Component {
 	render() {
 		const { list } = this.props.playlistStore;
 
-		if (!this.props.playerStore.playlistVisible) {
-			return null;
-		}
+		// if (!this.props.playerStore.playlistVisible) {
+		// 	return null;
+		// }
+
+		console.log("show the playlist");
 
 		return (
-			<div>
+			<div className={styles.container}>
 				<PlaylistItems items={list} removeItem={this.removeItem} />
 			</div>
 		);

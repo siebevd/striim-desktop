@@ -31,4 +31,6 @@ class SearchStore {
 	}
 }
 
-export default SearchStore;
+const searchStore = new SearchStore();
+
+export default searchStore;

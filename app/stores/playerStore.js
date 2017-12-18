@@ -1,4 +1,4 @@
-import { observable, action, computed } from "mobx";
+import { observable, action, computed, autorun } from "mobx";
 
 class PlayerStore {
 	@observable playlistVisible = false;
@@ -15,4 +15,19 @@ class PlayerStore {
 	}
 }
 
-export default PlayerStore;
+// Create the store
+const playerStore = new PlayerStore();
+
+autorun(() => {
+	let showPlaylist = playerStore.playlistVisible;
+	if (showPlaylist) {
+		// We need to resize the window
+		// so that we can show the playlist without
+		// covering the video
+		console.log("make the window bigger");
+	} else {
+		console.log("make the window smaller");
+	}
+});
+
+export default playerStore;

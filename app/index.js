@@ -3,18 +3,12 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import initThreadConnector from "./utils/connector";
 import VisibleApp from "./components/App.js";
-import { useStrict } from "mobx";
+import { useStrict, autorun } from "mobx";
 import { Provider } from "mobx-react";
 
-import PlaylistStore from "./stores/playlistStore";
-import SearchStore from "./stores/searchStore";
-import PlayerStore from "./stores/PlayerStore";
-
-const playlistStore = new PlaylistStore(
-	JSON.parse(localStorage.getItem("playlist") || "{}")
-);
-const searchStore = new SearchStore();
-const playerStore = new PlayerStore();
+import playlistStore from "./stores/playlistStore";
+import searchStore from "./stores/searchStore";
+import playerStore from "./stores/PlayerStore";
 
 // Save changes to the store in Localstorage
 playlistStore.subscribeLocalstorageToStore();

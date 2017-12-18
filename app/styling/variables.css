@@ -2,4 +2,6 @@
 
 :root {
 	--lightBackground: #0b141f;
+	--darkBackground: #05090f;
+	--playlistWidth: 270px;
 }
