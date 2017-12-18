@@ -1,0 +1,40 @@
+/*-----------*/
+/*    Base   */
+/*-----------*/
+
+.container {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	color: var(--textColor);
+	padding: 0 0 0 30px;
+	cursor: pointer;
+}
+
+.container:hover,
+.active {
+	background: red;
+}
+
+/*-----------*/
+/*  Content  */
+/*-----------*/
+
+.content {
+	display: flex;
+}
+
+.thumbnail {
+	width: 40px;
+	height: 40px;
+	background-size: cover;
+	background-position: center;
+	border-radius: 5px;
+}
+
+.title {
+	max-width: 170px;
+	font-size: 11px;
+	padding-left: 15px;
+	line-height: 1.4;
+}

@@ -15,7 +15,6 @@ class PlaylistSearch extends Component {
 
 	addItem = result => {
 		// Get info from the result
-		console.log("what info can we gather", result);
 		this.props.addItem(result);
 	};
 

@@ -41,11 +41,21 @@ class App extends Component {
 		return (
 			<div className={styles.container}>
 				<div className={styles.titleBar} />
-				<YouTubePlayer
-					ytId={activeItem.id}
-					playing={playing}
-					setPlayState={this.setPlayState}
-				/>
+				{activeItem && (
+					<YouTubePlayer
+						ytId={activeItem.id}
+						playing={playing}
+						setPlayState={this.setPlayState}
+					/>
+				)}
+				{/* TODO:Improve this empty state... */}
+				{!activeItem && (
+					<div className={styles.emptyState}>
+						<div className={styles.emptyStateContent}>
+							No Videos in playlist yet!
+						</div>
+					</div>
+				)}
 				<Playlist />
 				<Search addItem={this.addItem} />
 				<DevTools />

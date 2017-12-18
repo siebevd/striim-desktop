@@ -1,21 +1,24 @@
 import { ipcRenderer } from "electron";
 import { togglePlay } from "modules/player";
+import playerStore from "stores/PlayerStore";
 
 //
 // Connect Rendered to the main thread
 //
 
-let store;
-
 export default function initThreadConnector(s) {
 	// update the store so we can use it
 	// everywhere in the file
-	store = s;
+	// Not sure if this function is still needed
 }
+
+/**
+ * Listeners
+ */
 
 ipcRenderer.on("playpause", (event, play) => {
 	// toggle the play event
-	// store.dispatch(togglePlay());
+	playerStore.togglePlayState();
 });
 
 ipcRenderer.on("paste", (event, text) => {
@@ -24,3 +27,14 @@ ipcRenderer.on("paste", (event, text) => {
 	// TODO: add it to the queue
 	console.log("what is the pasted text", text);
 });
+
+/**
+ * Dispatchers
+ */
+
+function resizeWindow(width, height) {
+	console.log("resize the window");
+	ipcRenderer.send("resize", { width, height });
+}
+
+export { resizeWindow };

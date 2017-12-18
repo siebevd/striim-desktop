@@ -1,13 +1,13 @@
-
 body {
 	margin: 0;
+	/* TODO: should probably incude roboto, for macs that don't have the font*/
+	font-family: Roboto, sans-serif;
+	background: var(--lightBackground);
 }
-
 
 /* ------------- */
 /*    Base UI    */
 /* ------------- */
-
 
 .container {
 	display: flex;
@@ -22,9 +22,25 @@ body {
 	-webkit-app-region: drag;
 }
 
+/* ------------- */
+/*  Empty State  */
+/* ------------- */
 
-.centerContent {
+.emptyState {
+	/* Use the same dimensions as the youtube player */
 	width: 100%;
+	padding-bottom: 56.25%;
+	height: 0;
+	position: relative;
+}
+
+.emptyStateContent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 	display: flex;
-	margin-top: -30px;
+	justify-content: center;
+	align-items: center;
 }

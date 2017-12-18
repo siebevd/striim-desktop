@@ -1,4 +1,10 @@
-const { app, BrowserWindow, globalShortcut, clipboard } = require("electron");
+const {
+	app,
+	BrowserWindow,
+	globalShortcut,
+	clipboard,
+	ipcMain
+} = require("electron");
 const path = require("path");
 const url = require("url");
 const electronLocalshortcut = require("electron-localshortcut");
@@ -22,7 +28,9 @@ function createWindow() {
 	win = new BrowserWindow({
 		width: 800,
 		height: 580,
-		titleBarStyle: "hidden-inset"
+		titleBarStyle: "hidden-inset",
+		resizable: false,
+		backgroundColor: "#0b141f"
 	});
 
 	// and load the index.html of the app.
@@ -36,10 +44,6 @@ function createWindow() {
 
 	// Open the DevTools.
 	win.webContents.openDevTools();
-
-	// Lock Aspect ratio
-	// 1.3793 = youtube video + playlist + controls (800x580)
-	win.setAspectRatio(1.3793);
 
 	// Emitted when the window is closed.
 	win.on("closed", () => {
@@ -65,6 +69,12 @@ app.on("ready", () => {
 	electronLocalshortcut.register(win, "CommandOrControl+V", () => {
 		// Catch the paste command and send it to the window
 		win.webContents.send("paste", clipboard.readText());
+	});
+
+	ipcMain.on("resize", (ev, data) => {
+		const { width, height } = data;
+		// Resize the window to the new size
+		win.setSize(width, height, true);
 	});
 });
 

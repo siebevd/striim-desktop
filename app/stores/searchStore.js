@@ -29,6 +29,11 @@ class SearchStore {
 			})
 		);
 	}
+
+	@action
+	resetList() {
+		this.results.replace([]);
+	}
 }
 
 const searchStore = new SearchStore();

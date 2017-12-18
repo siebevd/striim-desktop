@@ -18,17 +18,22 @@ export default class InfoBar extends Component {
 		this.props.playerStore.togglePlaylistVisible();
 	};
 
+	togglePlay = () => {
+		this.props.playerStore.togglePlayState();
+	};
+
 	/**
 	 * Renders
 	 */
 
 	render() {
-		const { playlistVisible } = this.props.playerStore;
+		const { playlistVisible, playing } = this.props.playerStore;
 		return (
 			<div className={styles.container}>
 				<button onClick={this.togglePlaylist}>
 					{playlistVisible ? "hide" : "show"} playlist
 				</button>
+				<button onClick={this.togglePlay}>{playing ? "pause" : "play"}</button>
 			</div>
 		);
 	}

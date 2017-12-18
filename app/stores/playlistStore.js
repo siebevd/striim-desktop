@@ -1,4 +1,5 @@
 import { observable, action, toJS, reaction, computed } from "mobx";
+import searchStore from "stores/searchStore";
 
 class PlaylistStore {
 	constructor(initObj) {
@@ -25,6 +26,9 @@ class PlaylistStore {
 			artist,
 			type
 		});
+
+		// Reset the search
+		searchStore.resetList();
 	}
 
 	@computed
@@ -38,6 +42,11 @@ class PlaylistStore {
 		// (maybe we can write a function that removes it based on the youtube id? - but what happens if the same id is in the list twice?)
 		// Remove the item from the list
 		this.list.splice(index, 1);
+	}
+
+	@action
+	setActiveItem(index) {
+		this.activeIndex = index;
 	}
 
 	subscribeLocalstorageToStore() {
