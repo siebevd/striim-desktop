@@ -3,6 +3,27 @@ import { resizeWindow } from "utils/connector";
 class PlayerStore {
 	@observable playlistVisible = false;
 	@observable playing = false;
+	@observable totalTime = 0;
+	@observable playedTime = 0;
+
+	@computed
+	get progress() {
+		if (this.totalTime < 1) {
+			// Make sure we return a number
+			// 0/0 is NaN
+			return 0;
+		}
+		return this.playedTime / this.totalTime;
+	}
+
+	@computed
+	get remainingTime() {
+		const remaining = this.totalTime - this.playedTime;
+		const minutes = Math.floor(remaining / 60);
+		const seconds = Math.floor(remaining - minutes * 60);
+
+		return ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+	}
 
 	@action
 	togglePlaylistVisible() {
@@ -17,6 +38,16 @@ class PlayerStore {
 	@action
 	togglePlayState() {
 		this.playing = !this.playing;
+	}
+
+	@action
+	updateTotalTime(totalTime) {
+		this.totalTime = totalTime;
+	}
+
+	@action
+	updatePlayedTime(playedTime) {
+		this.playedTime = playedTime;
 	}
 }
 

@@ -2,11 +2,22 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styles from "./YoutubePlayer.css";
 import YouTube from "react-youtube";
+import { observer, inject } from "mobx-react";
 
+@observer
+@inject("playerStore")
 export default class YoutubePlayer extends Component {
 	/**
 	 * Lifecycle
 	 */
+
+	componentDidMount() {
+		this.timer = setInterval(this.updateProgress, 150);
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.timer);
+	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.playing !== nextProps.playing && this.$player) {
@@ -23,11 +34,22 @@ export default class YoutubePlayer extends Component {
 	}
 
 	/**
+	 * Data Handlers
+	 */
+
+	updateProgress = () => {
+		if (this.$player) {
+			this.props.playerStore.updatePlayedTime(this.$player.getCurrentTime());
+		}
+	};
+
+	/**
 	 * Event Handlers
 	 */
 
 	videoReady = ev => {
 		this.$player = ev.target;
+		this.props.playerStore.updateTotalTime(this.$player.getDuration());
 	};
 
 	videoStateChange = ev => {
@@ -99,5 +121,6 @@ export default class YoutubePlayer extends Component {
 YoutubePlayer.propTypes = {
 	playing: PropTypes.bool.isRequired,
 	setPlayState: PropTypes.func.isRequired,
-	ytId: PropTypes.string
+	ytId: PropTypes.string,
+	playerStore: PropTypes.object
 };

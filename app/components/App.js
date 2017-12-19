@@ -59,7 +59,7 @@ class App extends Component {
 				<Playlist />
 				<Search addItem={this.addItem} />
 				<DevTools />
-				<InfoBar />
+				<InfoBar activeItem={activeItem} />
 			</div>
 		);
 	}

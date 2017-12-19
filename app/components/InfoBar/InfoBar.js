@@ -22,21 +22,51 @@ export default class InfoBar extends Component {
 		this.props.playerStore.togglePlayState();
 	};
 
+	playPrevious = () => {};
+
+	playNext = () => {};
+
 	/**
 	 * Renders
 	 */
 
 	render() {
-		const { playlistVisible, playing } = this.props.playerStore;
+		const { playerStore, activeItem } = this.props;
+		const { playlistVisible, playing, progress, remainingTime } = playerStore;
+
 		return (
 			<div className={styles.container}>
-				<button onClick={this.togglePlaylist}>
-					{playlistVisible ? "hide" : "show"} playlist
-				</button>
-				<button onClick={this.togglePlay}>{playing ? "pause" : "play"}</button>
+				<div className={styles.centerContent}>
+					<button className={styles.prevButton} onClick={this.playPrevious} />
+					<button className={styles.playButton} onClick={this.togglePlay}>
+						{!playing && <div className={styles.playIcon} />}
+						{playing && <div className={styles.pauseIcon} />}
+					</button>
+					<button className={styles.nextButton} onClick={this.playNext} />
+					<div className={styles.trackInfo}>
+						<div className={styles.trackName}>{activeItem.title}</div>
+						<div className={styles.progressContainer}>
+							<div className={styles.progressBar}>
+								<div
+									className={styles.progress}
+									style={{ transform: `translateX(-${100 - progress * 100}%)` }}
+								/>
+							</div>
+							<div className={styles.progressTime}>-{remainingTime}</div>
+						</div>
+					</div>
+				</div>
+				<div className={styles.sideContent}>
+					<button onClick={this.togglePlaylist}>
+						{playlistVisible ? "hide" : "show"} playlist
+					</button>
+				</div>
 			</div>
 		);
 	}
 }
 
-InfoBar.propTypes = {};
+InfoBar.propTypes = {
+	activeItem: PropTypes.object.isRequired,
+	playerStore: PropTypes.object
+};
