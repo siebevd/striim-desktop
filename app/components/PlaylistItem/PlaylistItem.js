@@ -27,8 +27,6 @@ class PlaylistItem extends Component {
 	render() {
 		const { item, index, active } = this.props;
 
-		console.log("what is classNames", classNames);
-
 		const containerStyles = classNames({
 			container: true,
 			active: active

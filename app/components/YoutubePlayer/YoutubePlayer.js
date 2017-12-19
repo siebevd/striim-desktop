@@ -7,6 +7,7 @@ import { observer, inject } from "mobx-react";
 @observer
 @inject("playerStore")
 export default class YoutubePlayer extends Component {
+	loadedId = "";
 	/**
 	 * Lifecycle
 	 */
@@ -39,6 +40,11 @@ export default class YoutubePlayer extends Component {
 
 	updateProgress = () => {
 		if (this.$player) {
+			if (this.loadedId !== this.props.ytId) {
+				// This should be put in a better place
+				this.props.playerStore.updateTotalTime(this.$player.getDuration());
+			}
+
 			this.props.playerStore.updatePlayedTime(this.$player.getCurrentTime());
 		}
 	};
@@ -49,7 +55,7 @@ export default class YoutubePlayer extends Component {
 
 	videoReady = ev => {
 		this.$player = ev.target;
-		this.props.playerStore.updateTotalTime(this.$player.getDuration());
+		// this.props.playerStore.updateTotalTime(this.$player.getDuration());
 	};
 
 	videoStateChange = ev => {
@@ -66,6 +72,7 @@ export default class YoutubePlayer extends Component {
 					this.playing = true;
 					this.props.setPlayState(true);
 				}
+
 				break;
 			case 2: // Paused
 				// this.props.updatePlayerPlaying(false);
@@ -108,8 +115,8 @@ export default class YoutubePlayer extends Component {
 							wmode: "transparent",
 							modestbranding: 1,
 							iv_load_policy: 3,
-							suggestedQuality: "hd1080",
-							mute: true
+							suggestedQuality: "hd1080"
+							// mute: true
 						}
 					}}
 				/>
