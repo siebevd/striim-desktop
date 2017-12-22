@@ -38,6 +38,7 @@ class App extends Component {
 		const { list, activeItem } = this.props.playlistStore;
 		const { playing } = this.props.playerStore;
 
+		console.log("is there an empty state?", activeItem);
 		return (
 			<div className={styles.container}>
 				<div className={styles.titleBar} />
@@ -58,7 +59,7 @@ class App extends Component {
 				)}
 				<Playlist />
 				<Search addItem={this.addItem} />
-				<DevTools />
+				{/* <DevTools /> */}
 				<InfoBar activeItem={activeItem} />
 			</div>
 		);

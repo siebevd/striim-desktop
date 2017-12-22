@@ -3,6 +3,7 @@ body {
 	/* TODO: should probably incude roboto, for macs that don't have the font*/
 	font-family: Roboto, sans-serif;
 	background: var(--lightBackground);
+	color: var(--textColor);
 }
 
 /* ------------- */
@@ -12,6 +13,8 @@ body {
 .container {
 	display: flex;
 	flex-direction: column;
+	background: grey;
+	/* background: var(--darkBackground); */
 }
 
 .titleBar {
