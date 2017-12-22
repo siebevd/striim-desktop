@@ -39,6 +39,7 @@ class PlaylistSearch extends Component {
 			// Focus on the input field, so they can start typing immediatelly
 			this.$input.focus();
 		} else {
+			this.$input.blur();
 			// Clear the value of the field
 			this.$input.value = "";
 		}
