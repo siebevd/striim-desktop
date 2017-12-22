@@ -13,8 +13,7 @@ body {
 .container {
 	display: flex;
 	flex-direction: column;
-	background: grey;
-	/* background: var(--darkBackground); */
+	background: var(--darkBackground);
 }
 
 .titleBar {

@@ -49,6 +49,11 @@ class PlaylistSearch extends Component {
 			// Enter key is pressed
 			this.updateResults();
 		}
+
+		if (ev.which === 27) {
+			// Escape button
+			this.toggleSearch();
+		}
 	};
 
 	/**
