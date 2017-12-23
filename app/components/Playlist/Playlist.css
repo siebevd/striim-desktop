@@ -4,7 +4,11 @@
 
 .container {
 	width: 100%;
-	height: 65px;
+	height: 100%;
 	display: flex;
-	background: var(--darkBackground);
+	overflow: scroll;
+	/* background: var(--darkBackground); */
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }

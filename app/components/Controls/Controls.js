@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { observer } from "mobx-react";
-
 import styles from "./Controls.css";
 
 @observer
@@ -25,7 +24,6 @@ export default class Controls extends Component {
 			return null;
 		}
 
-		console.log("what is activeItem", activeItem);
 		return (
 			<div className={styles.container}>
 				<button className={styles.playButton} onClick={togglePlay}>
@@ -51,5 +49,5 @@ Controls.propTypes = {
 	playing: PropTypes.bool.isRequired,
 	togglePlay: PropTypes.func.isRequired,
 	activeItem: PropTypes.object,
-	progress: PropTypes.Number
+	progress: PropTypes.number
 };

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import "../styling/variables.css";
 import "../styling/reset.css";
 import styles from "./App.css";
+
 import YouTubePlayer from "components/YoutubePlayer/YoutubePlayer";
-import Playlist from "components/Playlist/Playlist";
 import Search from "components/Search/Search";
 import InfoBar from "components/InfoBar/InfoBar";
 import DevTools from "mobx-react-devtools";
@@ -57,7 +57,6 @@ class App extends Component {
 						</div>
 					</div>
 				)}
-				<Playlist />
 				<Search addItem={this.addItem} />
 				{/* <DevTools /> */}
 				<InfoBar activeItem={activeItem} />

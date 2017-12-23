@@ -1,7 +1,7 @@
 import { observable, action, computed, autorun } from "mobx";
 import { resizeWindow } from "utils/connector";
+
 class PlayerStore {
-	@observable playlistVisible = false;
 	@observable playing = false;
 	@observable totalTime = 0;
 	@observable playedTime = 0;
@@ -23,11 +23,6 @@ class PlayerStore {
 		const seconds = Math.floor(remaining - minutes * 60);
 
 		return ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
-	}
-
-	@action
-	togglePlaylistVisible() {
-		this.playlistVisible = !this.playlistVisible;
 	}
 
 	@action

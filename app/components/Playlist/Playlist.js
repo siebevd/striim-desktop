@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
-import PlaylistItem from "components/PlaylistItem/PlaylistItem";
 import styles from "./Playlist.css";
+
+import PlaylistItem from "components/PlaylistItem/PlaylistItem";
 
 @inject("playlistStore", "playerStore")
 @observer
@@ -29,10 +30,6 @@ class Playlist extends Component {
 
 	render() {
 		const { list, activeIndex } = this.props.playlistStore;
-
-		if (!this.props.playerStore.playlistVisible) {
-			return null;
-		}
 
 		return (
 			<div className={styles.container}>

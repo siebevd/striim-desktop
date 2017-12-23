@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Controls from "components/Controls/Controls";
 import { inject, observer } from "mobx-react";
 import styles from "./InfoBar.css";
+
+import Controls from "components/Controls/Controls";
+import Playlist from "components/Playlist/Playlist";
 
 @inject("playerStore")
 @observer
@@ -43,6 +45,7 @@ export default class InfoBar extends Component {
 					activeItem={activeItem}
 					progress={progress}
 				/>
+				<Playlist />
 			</div>
 		);
 	}

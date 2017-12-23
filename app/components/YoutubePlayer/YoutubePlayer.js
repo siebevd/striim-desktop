@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styles from "./YoutubePlayer.css";
-import YouTube from "react-youtube";
 import { observer, inject } from "mobx-react";
+
+import YouTube from "react-youtube";
 
 @observer
 @inject("playerStore")

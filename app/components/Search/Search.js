@@ -107,8 +107,6 @@ class PlaylistSearch extends Component {
 			);
 		}
 
-		console.log("what is ithe results list", resultsList);
-
 		// in a plane right now, so search icon is coded instead
 		// just being a svg
 		return (

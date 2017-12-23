@@ -4,8 +4,8 @@
 
 .container {
 	position: absolute;
-	top: 15px;
-	right: 35px;
+	top: 0px;
+	right: 0px;
 }
 
 /* ------------- */
@@ -15,7 +15,7 @@
 .topContainer {
 	display: flex;
 	align-items: center;
-	padding: 10px 15px;
+	padding: 15px 20px;
 	transition: background 0.5s;
 }
 
@@ -23,7 +23,7 @@
 	position: relative;
 	width: 10px;
 	height: 16px;
-	transform: translatex(23px);
+	/* transform: translatex(23px); */
 	cursor: pointer;
 	transition: transform 0.5s;
 	margin-right: 8px;
@@ -88,10 +88,9 @@
 
 .results {
 	position: absolute;
-	width: 218px;
+	width: 228px;
 	right: 0;
-	background: var(--lightBackground);
-	margin-top: 10px;
+	background: var(--midBackground);
 	padding: 10px 15px;
 	font-size: var(--baseFontSize);
 	display: none;

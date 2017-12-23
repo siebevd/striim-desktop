@@ -19,7 +19,7 @@ class SearchStore {
 				const newItems = data.items.map(item => ({
 					id: item.id.videoId,
 					title: item.snippet.title,
-					thumb: item.snippet.thumbnails.default.url,
+					thumb: item.snippet.thumbnails.high.url,
 					artist: item.snippet.channelTitle,
 					type: "youtube"
 				}));

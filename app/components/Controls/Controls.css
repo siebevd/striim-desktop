@@ -9,6 +9,8 @@
 	display: flex;
 	align-items: center;
 	position: relative;
+	box-shadow: 5px 0 10px 0px rgba(0, 0, 0, 0.6);
+	z-index: 2;
 }
 
 /* ----------- */

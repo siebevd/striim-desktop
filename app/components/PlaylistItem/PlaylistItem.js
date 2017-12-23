@@ -35,16 +35,23 @@ class PlaylistItem extends Component {
 		return (
 			<div className={containerStyles}>
 				<div
+					className={styles.thumbnail}
+					style={{ backgroundImage: `url(${item.thumb})` }}
+				/>
+				<div
 					className={styles.content}
 					onClick={this.setActiveItem.bind(this, index)}
 				>
-					<div
-						className={styles.thumbnail}
-						style={{ backgroundImage: `url(${item.thumb})` }}
-					/>
-					<p className={styles.title}>{item.title}</p>
+					<p className={styles.title}>
+						{item.title.substring(0, 38) +
+							(item.title.length > 38 ? "..." : "")}
+					</p>
+					<p className={styles.artist}>by {item.artist}</p>
 				</div>
-				<button onClick={this.removeItem.bind(this, index)}>Remove</button>
+				<button
+					className={styles.remove}
+					onClick={this.removeItem.bind(this, index)}
+				/>
 			</div>
 		);
 	}
