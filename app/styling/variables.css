@@ -1,9 +1,11 @@
 :root {
 	--lightBackground: #0b141f;
-	--darkBackground: #05090f;
+	--darkBackground: #060d14;
+	--highlightColor: #09f0ac;
+
 	--textColor: #ececec;
 	--lightColor: #ffffff;
 
-	--baseFontSize: 14px;
+	--smallFontSize: 10px;
 	--baseFontSize: 12px;
 }

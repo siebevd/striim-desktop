@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Controls from "components/Controls/Controls";
 import { inject, observer } from "mobx-react";
 import styles from "./InfoBar.css";
 
@@ -36,31 +37,12 @@ export default class InfoBar extends Component {
 
 		return (
 			<div className={styles.container}>
-				<div className={styles.centerContent}>
-					<button className={styles.prevButton} onClick={this.playPrevious} />
-					<button className={styles.playButton} onClick={this.togglePlay}>
-						{!playing && <div className={styles.playIcon} />}
-						{playing && <div className={styles.pauseIcon} />}
-					</button>
-					<button className={styles.nextButton} onClick={this.playNext} />
-					<div className={styles.trackInfo}>
-						<div className={styles.trackName}>{activeItem.title}</div>
-						<div className={styles.progressContainer}>
-							<div className={styles.progressBar}>
-								<div
-									className={styles.progress}
-									style={{ transform: `translateX(-${100 - progress * 100}%)` }}
-								/>
-							</div>
-							<div className={styles.progressTime}>-{remainingTime}</div>
-						</div>
-					</div>
-				</div>
-				<div className={styles.sideContent}>
-					<button onClick={this.togglePlaylist}>
-						{playlistVisible ? "hide" : "show"} playlist
-					</button>
-				</div>
+				<Controls
+					playing={playing}
+					togglePlay={this.togglePlay}
+					activeItem={activeItem}
+					progress={progress}
+				/>
 			</div>
 		);
 	}
