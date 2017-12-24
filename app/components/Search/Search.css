@@ -23,7 +23,7 @@
 	position: relative;
 	width: 10px;
 	height: 16px;
-	/* transform: translatex(23px); */
+	transform: translatex(23px);
 	cursor: pointer;
 	transition: transform 0.5s;
 	margin-right: 8px;
@@ -35,6 +35,7 @@
 		height: 8px;
 		border-radius: 50%;
 		box-shadow: 0px 0px 0px 2px var(--textColor);
+		transition: opacity 0.2s;
 	}
 
 	&:after {
@@ -48,6 +49,59 @@
 		transform: rotate(-45deg);
 		right: 0px;
 		bottom: 0px;
+		transition: opacity 0.2s;
+	}
+}
+
+@keyframes circleRound {
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.loadIcon {
+	position: absolute;
+	top: 4px;
+	left: 0;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	animation: circleRound 1s infinite;
+	opacity: 0;
+	&:before,
+	&:after {
+		content: "";
+		display: block;
+		top: -2px;
+		left: 50%;
+		position: absolute;
+		width: 4px;
+		height: 4px;
+		background: var(--textColor);
+		border-radius: 50%;
+		transform: translateX(-50%);
+	}
+
+	&:after {
+		top: initial;
+		bottom: -2px;
+	}
+}
+
+.loading {
+	.loadIcon {
+		opacity: 1;
+	}
+
+	.searchIcon {
+		&:before,
+		&:after {
+			opacity: 0;
+		}
 	}
 }
 
@@ -61,6 +115,32 @@
 	transition: width 0.5s;
 }
 
+.clear {
+	width: 20px;
+	height: 20px;
+	position: relative;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s;
+	&:before,
+	&:after {
+		content: "";
+		display: block;
+		width: 1px;
+		height: 15px;
+		background: var(--textColor);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate3d(-50%, -50%, 0) rotate(-45deg) scale(0);
+		transition: transform 0.3s;
+	}
+
+	&:after {
+		transform: translate3d(-50%, -50%, 0) rotate(45deg) scale(0);
+	}
+}
+
 /* Active State */
 .searchActive {
 	.topContainer {
@@ -72,13 +152,25 @@
 	}
 
 	.search {
-		width: 170px;
+		width: 240px;
 	}
 
 	.results {
 		/* Hide the results when the search bar
 		shouldn't be empty! */
 		display: block;
+	}
+
+	.clear {
+		opacity: 1;
+		pointer-events: initial;
+		&:before {
+			transform: translate3d(-50%, -50%, 0) rotate(-45deg) scale(1);
+		}
+
+		&:after {
+			transform: translate3d(-50%, -50%, 0) rotate(45deg) scale(1);
+		}
 	}
 }
 
@@ -88,7 +180,7 @@
 
 .results {
 	position: absolute;
-	width: 228px;
+	width: 318px;
 	right: 0;
 	background: var(--midBackground);
 	padding: 10px 15px;
@@ -97,15 +189,19 @@
 }
 
 .resultItem {
-	padding: 5px 0;
+	padding: 12px 0;
 	display: flex;
 	align-items: center;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+	&:last-child {
+		border-bottom: none;
+	}
 }
 
 .resultThumb {
-	width: 25px;
-	height: 25px;
-	border-radius: 2px;
+	width: 40px;
+	height: 24px;
+	border-radius: 5px;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -115,7 +211,7 @@
 }
 
 .resultInfo {
-	max-width: 150px;
+	max-width: 220px;
 	line-height: 1.4;
 }
 
@@ -123,4 +219,5 @@
 	display: block;
 	opacity: 0.5;
 	margin-top: 2px;
+	font-size: var(--smallFontSize);
 }

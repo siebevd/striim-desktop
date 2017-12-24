@@ -45,6 +45,13 @@ class PlaylistSearch extends Component {
 		}
 	};
 
+	clearSearch = () => {
+		// Clear the value
+		this.$input.value = "";
+		// Reset the list
+		this.props.searchStore.resetList();
+	};
+
 	keyDownHandler = ev => {
 		if (ev.which === 13) {
 			// Enter key is pressed
@@ -63,19 +70,21 @@ class PlaylistSearch extends Component {
 
 	render() {
 		const { loading, results } = this.props.searchStore;
+		const resultsAvailable = results.length > 0;
 
 		const containerStyles = classNames({
 			container: true,
-			searchActive: this.state.searchActive
+			searchActive: this.state.searchActive,
+			loading: loading
 		});
 
 		let resultsList = "";
 
-		if (results.length > 0) {
+		if (resultsAvailable) {
 			// The results are here, so show the results
 			resultsList = (
 				<ul className={styles.results}>
-					{results.map(result => (
+					{results.slice(0, 5).map(result => (
 						<li
 							className={styles.resultItem}
 							key={`${result.id}-result`}
@@ -95,32 +104,34 @@ class PlaylistSearch extends Component {
 			);
 		}
 
-		if (loading) {
-			// Show loading screen
-			// TODO: improve loading here
-			// IDEA: should we change the search icon to a load icon
-			// with a cool animation instead of showing the loading here
-			resultsList = (
-				<ul className={styles.results}>
-					<li>Loading...</li>
-				</ul>
-			);
-		}
+		// if (loading) {
+		// 	// Show loading screen
+		// 	// TODO: improve loading here
+		// 	// IDEA: should we change the search icon to a load icon
+		// 	// with a cool animation instead of showing the loading here
+		// 	resultsList = (
+		// 		<ul className={styles.results}>
+		// 			<li>Loading...</li>
+		// 		</ul>
+		// 	);
+		// }
 
 		// in a plane right now, so search icon is coded instead
 		// just being a svg
 		return (
 			<div className={containerStyles}>
 				<div className={styles.topContainer}>
-					<button className={styles.searchIcon} onClick={this.toggleSearch} />
+					<button className={styles.searchIcon} onClick={this.toggleSearch}>
+						<div className={styles.loadIcon} />
+					</button>
 					<input
 						ref={r => (this.$input = r)}
 						className={styles.search}
 						onKeyDown={this.keyDownHandler}
 					/>
 
-					{/* TODO: should we add a close button?
-						<button className={styles.closeIcon} onClick={this.toggleSearch} /> */}
+					{/* TODO: should we add a close button?*/}
+					<button className={styles.clear} onClick={this.toggleSearch} />
 				</div>
 
 				{resultsList}
