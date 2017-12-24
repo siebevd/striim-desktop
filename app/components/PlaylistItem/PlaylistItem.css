@@ -14,6 +14,7 @@
 	position: relative;
 	overflow: hidden;
 	border-right: 1px solid var(--darkBackground);
+	transition: background 0.5s;
 	&:hover {
 		.remove {
 			opacity: 1;
@@ -28,7 +29,24 @@
 
 .container:hover,
 .active {
-	/* background: red; */
+	background: var(--midBackground);
+	.thumbnail {
+		background-color: var(--midBackground);
+		&:after {
+			background-color: linear-gradient(
+				to right,
+				rgba(11, 20, 31, 0) 0%,
+				var(--midBackground) 100%
+			);
+		}
+	}
+}
+
+.active {
+	.title,
+	.artist {
+		color: var(--highlightColor);
+	}
 }
 
 /*-----------*/
