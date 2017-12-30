@@ -28,7 +28,7 @@ class PlaylistSearch extends Component {
 		this.props.addItem(result);
 
 		// Hide the search bar again
-		this.toggleSearch;
+		this.toggleSearch();
 	};
 
 	toggleSearch = () => {
@@ -104,18 +104,6 @@ class PlaylistSearch extends Component {
 			);
 		}
 
-		// if (loading) {
-		// 	// Show loading screen
-		// 	// TODO: improve loading here
-		// 	// IDEA: should we change the search icon to a load icon
-		// 	// with a cool animation instead of showing the loading here
-		// 	resultsList = (
-		// 		<ul className={styles.results}>
-		// 			<li>Loading...</li>
-		// 		</ul>
-		// 	);
-		// }
-
 		// in a plane right now, so search icon is coded instead
 		// just being a svg
 		return (
@@ -140,7 +128,6 @@ class PlaylistSearch extends Component {
 		return (
 			<div className={styles.container}>
 				<button onClick={this.updateVideo}>search</button>
-				{loading && "loading..."}
 				{results.map(result => (
 					<div
 						key={`${result.id}-result`}
