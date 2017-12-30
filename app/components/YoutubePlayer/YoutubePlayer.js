@@ -89,7 +89,9 @@ export default class YoutubePlayer extends Component {
 		}
 	};
 
-	videoEnded = ev => {};
+	videoEnded = ev => {
+		console.log("the video has ended, so lets go to the next video");
+	};
 
 	/**
 	 * Renders
@@ -129,6 +131,7 @@ export default class YoutubePlayer extends Component {
 YoutubePlayer.propTypes = {
 	playing: PropTypes.bool.isRequired,
 	setPlayState: PropTypes.func.isRequired,
+	goToNextActiveItem: PropTypes.func.isRequired,
 	ytId: PropTypes.string,
 	playerStore: PropTypes.object
 };

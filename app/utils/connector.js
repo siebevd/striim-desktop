@@ -1,6 +1,6 @@
 import { ipcRenderer } from "electron";
-import { togglePlay } from "modules/player";
-import playerStore from "stores/PlayerStore";
+import playerStore from "stores/playerStore";
+import playlistStore from "stores/playlistStore";
 
 //
 // Connect Rendered to the main thread
@@ -19,6 +19,16 @@ export default function initThreadConnector(s) {
 ipcRenderer.on("playpause", (event, play) => {
 	// toggle the play event
 	playerStore.togglePlayState();
+});
+
+ipcRenderer.on("nextTrack", (event, play) => {
+	// toggle the play event
+	playlistStore.goToNextActiveItem();
+});
+
+ipcRenderer.on("prevTrack", (event, play) => {
+	// toggle the play event
+	playlistStore.goToPrevActiveItem();
 });
 
 ipcRenderer.on("paste", (event, text) => {

@@ -59,11 +59,19 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
 	createWindow();
-	// Register a 'CommandOrControl+Y' shortcut listener.
+	// Register the play/pause keyboard press
 	globalShortcut.register("MediaPlayPause", () => {
-		console.log("play/pause music now");
 		win.webContents.send("playpause", "toggle");
-		// Do stuff when Y and either Command/Control is pressed.
+	});
+
+	// Register the next keyboard press
+	globalShortcut.register("MediaNextTrack", () => {
+		win.webContents.send("nextTrack", "next");
+	});
+
+	// Register the prev keyboard press
+	globalShortcut.register("MediaPreviousTrack", () => {
+		win.webContents.send("prevTrack", "next");
 	});
 
 	electronLocalshortcut.register(win, "CommandOrControl+V", () => {

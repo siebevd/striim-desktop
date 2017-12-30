@@ -8,7 +8,7 @@ import { Provider } from "mobx-react";
 
 import playlistStore from "./stores/playlistStore";
 import searchStore from "./stores/searchStore";
-import playerStore from "./stores/PlayerStore";
+import playerStore from "./stores/playerStore";
 
 // Save changes to the store in Localstorage
 playlistStore.subscribeLocalstorageToStore();

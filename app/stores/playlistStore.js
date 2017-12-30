@@ -15,22 +15,6 @@ class PlaylistStore {
 	@observable list = [];
 	@observable activeIndex = 0;
 
-	@action
-	addItem({ id, title, thumb, artist, type }) {
-		// TODO: should we validate that it
-		// has all the correct items?
-		this.list.push({
-			id,
-			title,
-			thumb,
-			artist,
-			type
-		});
-
-		// Reset the search
-		searchStore.resetList();
-	}
-
 	@computed
 	get activeItem() {
 		// A bit stupid, since this line is not being used
@@ -46,6 +30,26 @@ class PlaylistStore {
 		}
 
 		return activeItem || null;
+	}
+
+	/**
+	 * Actions
+	 */
+
+	@action
+	addItem({ id, title, thumb, artist, type }) {
+		// TODO: should we validate that it
+		// has all the correct items?
+		this.list.push({
+			id,
+			title,
+			thumb,
+			artist,
+			type
+		});
+
+		// Reset the search
+		searchStore.resetList();
 	}
 
 	@action
@@ -65,6 +69,22 @@ class PlaylistStore {
 	@action
 	setActiveItem(index) {
 		this.activeIndex = index;
+	}
+
+	@action
+	goToNextActiveItem() {
+		if (this.activeIndex < this.list.length - 1) {
+			// Only go to next video if we aren't on the last video
+			this.activeIndex = this.activeIndex + 1;
+		}
+	}
+
+	@action
+	goToPrevActiveItem() {
+		if (this.activeIndex > 0) {
+			// Only go to next video if we aren't on the first
+			this.activeIndex = this.activeIndex - 1;
+		}
 	}
 
 	subscribeLocalstorageToStore() {

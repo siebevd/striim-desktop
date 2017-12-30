@@ -26,6 +26,10 @@ class App extends Component {
 		this.props.playlistStore.addItem(result);
 	};
 
+	goToNextActiveItem = playState => {
+		this.props.playlistStore.goToNextActiveItem();
+	};
+
 	setPlayState = playState => {
 		this.props.playerStore.setPlayState(playState);
 	};
@@ -46,6 +50,7 @@ class App extends Component {
 						ytId={activeItem.id}
 						playing={playing}
 						setPlayState={this.setPlayState}
+						goToNextActiveItem={this.goToNextActiveItem}
 					/>
 				)}
 				{/* TODO:Improve this empty state... */}
