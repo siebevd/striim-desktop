@@ -90,7 +90,7 @@ export default class YoutubePlayer extends Component {
 	};
 
 	videoEnded = ev => {
-		console.log("the video has ended, so lets go to the next video");
+		this.props.goToNextActiveItem();
 	};
 
 	/**

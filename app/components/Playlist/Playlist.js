@@ -9,6 +9,34 @@ import PlaylistItem from "components/PlaylistItem/PlaylistItem";
 @observer
 class Playlist extends Component {
 	/**
+	 * Lifecycle
+	 */
+
+	componentWillUpdate(nextProps) {
+		// because of mobx nextProps and this.props will always be the same
+		//TODO: there must be a better way to do this...
+		if (this.activeIndex !== nextProps.playlistStore.activeIndex) {
+			this.activeIndex = nextProps.playlistStore.activeIndex;
+			// Scroll to the new index
+			this.scrollToIndex(this.activeIndex);
+		}
+	}
+
+	componentWillReact(hello) {
+		console.log("the component will update", hello);
+	}
+
+	/**
+	 * Other Handlers
+	 */
+
+	scrollToIndex = newIndex => {
+		// Scroll the container to the new active index
+		console.log("scroll to index", newIndex);
+		window.container = this.$container;
+	};
+
+	/**
 	 * Event Handlers
 	 */
 
@@ -32,7 +60,7 @@ class Playlist extends Component {
 		const { list, activeIndex } = this.props.playlistStore;
 
 		return (
-			<div className={styles.container}>
+			<div className={styles.container} ref={r => (this.$container = r)}>
 				{list.map((item, index) => (
 					<PlaylistItem
 						key={item.id}
