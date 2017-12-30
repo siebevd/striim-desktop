@@ -52,6 +52,6 @@ export default class InfoBar extends Component {
 }
 
 InfoBar.propTypes = {
-	activeItem: PropTypes.object.isRequired,
+	activeItem: PropTypes.object,
 	playerStore: PropTypes.object
 };

@@ -33,7 +33,19 @@ class PlaylistStore {
 
 	@computed
 	get activeItem() {
-		return this.list[this.activeIndex];
+		// A bit stupid, since this line is not being used
+		// but if it's not there, then mobx doesn't recognice that the list
+		// is being used in the computed value, so doesn't rerender...
+		const listLength = this.list.length;
+		let activeItem = this.list[this.activeIndex];
+
+		if (!activeItem && listLength > 0) {
+			// If there is no active item, but there are items in the list
+			// automatically assign the first one
+			activeItem = this.list[0];
+		}
+
+		return this.list[this.activeIndex] || null;
 	}
 
 	@action
@@ -41,6 +53,7 @@ class PlaylistStore {
 		// TODO: should this be written smarter?
 		// (maybe we can write a function that removes it based on the youtube id? - but what happens if the same id is in the list twice?)
 		// Remove the item from the list
+		// TODO: update the activeIndex if needed
 		this.list.splice(index, 1);
 	}
 
