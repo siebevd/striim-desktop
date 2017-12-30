@@ -45,7 +45,7 @@ class PlaylistStore {
 			activeItem = this.list[0];
 		}
 
-		return this.list[this.activeIndex] || null;
+		return activeItem || null;
 	}
 
 	@action
@@ -53,7 +53,12 @@ class PlaylistStore {
 		// TODO: should this be written smarter?
 		// (maybe we can write a function that removes it based on the youtube id? - but what happens if the same id is in the list twice?)
 		// Remove the item from the list
-		// TODO: update the activeIndex if needed
+
+		// Check if we're not removing the current active item
+		if (index === this.activeIndex) {
+			// Make the previous video the active one instead
+			this.activeIndex = index - 1;
+		}
 		this.list.splice(index, 1);
 	}
 
