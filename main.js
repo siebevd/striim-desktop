@@ -16,8 +16,7 @@ let win;
 function createWindow() {
 	const {
 		default: installExtension,
-		REACT_DEVELOPER_TOOLS,
-		REDUX_DEVTOOLS
+		REACT_DEVELOPER_TOOLS
 	} = require("electron-devtools-installer");
 
 	installExtension(REACT_DEVELOPER_TOOLS)
@@ -29,7 +28,7 @@ function createWindow() {
 		width: 800,
 		height: 580,
 		titleBarStyle: "hidden-inset",
-		resizable: false,
+		// resizable: false,
 		backgroundColor: "#0b141f"
 	});
 

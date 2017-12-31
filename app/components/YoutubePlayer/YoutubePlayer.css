@@ -5,8 +5,9 @@
 
 .container {
 	width: 100%;
-	padding-bottom: 56.25%;
-	height: 0;
+	/* padding-bottom: 56.25%; */
+	/* height: 0; */
+	min-height: calc(100vh - 65px); /* 65px is the height of the bar at the bottom*/
 	position: relative;
 }
 
