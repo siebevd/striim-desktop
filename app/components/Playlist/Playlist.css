@@ -7,8 +7,17 @@
 	height: 100%;
 	display: flex;
 	overflow: scroll;
+	position: relative;
 	/* background: var(--darkBackground); */
 	&::-webkit-scrollbar {
 		display: none;
+	}
+
+	&:after {
+		/* Add in the extra element, so we can scroll the last
+		   active element to the beginning of the view */
+		content: '';
+		display: block;
+		min-width: calc(100vw - 220px - 240px);	/* 220px for the controls + 240px for an active item */
 	}
 }

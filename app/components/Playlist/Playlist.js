@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
 import styles from "./Playlist.css";
+import scrollTo from "utils/scrollTo.js";
 
 import PlaylistItem from "components/PlaylistItem/PlaylistItem";
 
 @inject("playlistStore", "playerStore")
 @observer
 class Playlist extends Component {
+	itemRefs = {};
+
 	/**
 	 * Lifecycle
 	 */
@@ -22,8 +25,14 @@ class Playlist extends Component {
 		}
 	}
 
-	componentWillReact(hello) {
-		console.log("the component will update", hello);
+	componentDidMount() {
+		const activeItem = this.itemRefs[
+			`item-${this.props.playlistStore.activeIndex}`
+		];
+		if (activeItem) {
+			// Make sure the scroll is set to the right item
+			this.$container.scrollLeft = activeItem.offsetLeft;
+		}
 	}
 
 	/**
@@ -32,8 +41,12 @@ class Playlist extends Component {
 
 	scrollToIndex = newIndex => {
 		// Scroll the container to the new active index
-		console.log("scroll to index", newIndex);
-		window.container = this.$container;
+		const newActiveItem = this.itemRefs[`item-${newIndex}`];
+
+		if (newActiveItem) {
+			// Scroll to the position of the new active item
+			scrollTo(this.$container, newActiveItem.offsetLeft, 400);
+		}
 	};
 
 	/**
@@ -69,6 +82,7 @@ class Playlist extends Component {
 						removeItem={this.removeItem}
 						setActiveItem={this.setActiveItem}
 						active={index === activeIndex}
+						domRef={r => (this.itemRefs[`item-${index}`] = r)}
 					/>
 				))}
 			</div>

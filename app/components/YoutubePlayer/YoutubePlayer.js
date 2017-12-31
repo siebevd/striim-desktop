@@ -5,8 +5,8 @@ import { observer, inject } from "mobx-react";
 
 import YouTube from "react-youtube";
 
-@observer
 @inject("playerStore")
+@observer
 export default class YoutubePlayer extends Component {
 	loadedId = "";
 	/**
@@ -118,8 +118,7 @@ export default class YoutubePlayer extends Component {
 							wmode: "transparent",
 							modestbranding: 1,
 							iv_load_policy: 3,
-							suggestedQuality: "hd1080",
-							mute: true
+							suggestedQuality: "hd1080"
 						}
 					}}
 				/>

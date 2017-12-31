@@ -33,7 +33,7 @@ class PlaylistItem extends Component {
 		});
 
 		return (
-			<div className={containerStyles}>
+			<div className={containerStyles} ref={this.props.domRef}>
 				<div
 					className={styles.thumbnail}
 					style={{ backgroundImage: `url(${item.thumb})` }}
@@ -62,7 +62,8 @@ PlaylistItem.propTypes = {
 	removeItem: PropTypes.func.isRequired,
 	setActiveItem: PropTypes.func.isRequired,
 	index: PropTypes.number.isRequired,
-	active: PropTypes.bool.isRequired
+	active: PropTypes.bool.isRequired,
+	domRef: PropTypes.func
 };
 
 export default PlaylistItem;
