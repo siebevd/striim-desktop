@@ -4,13 +4,14 @@
 
 .container {
 	width: 220px;
-	height: 100%;
+	/* height: ; */
 	background: var(--darkBackground);
 	display: flex;
 	align-items: center;
-	position: relative;
+	position: absolute;
 	box-shadow: 5px 0 10px 0px rgba(0, 0, 0, 0.6);
 	z-index: 2;
+	bottom: 50px;
 }
 
 /* ----------- */

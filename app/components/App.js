@@ -4,6 +4,7 @@ import "../styling/variables.css";
 import "../styling/reset.css";
 import styles from "./App.css";
 
+import Controls from "components/Controls/Controls";
 import YouTubePlayer from "components/YoutubePlayer/YoutubePlayer";
 import Search from "components/Search/Search";
 import InfoBar from "components/InfoBar/InfoBar";
@@ -40,7 +41,7 @@ class App extends Component {
 
 	render() {
 		const { list, activeItem } = this.props.playlistStore;
-		const { playing } = this.props.playerStore;
+		const { playing, progress } = this.props.playerStore;
 
 		return (
 			<div className={styles.container}>
@@ -53,6 +54,13 @@ class App extends Component {
 						goToNextActiveItem={this.goToNextActiveItem}
 					/>
 				)}
+				<Controls
+					playing={playing}
+					togglePlay={this.togglePlay}
+					activeItem={activeItem}
+					progress={progress}
+				/>
+
 				{/* TODO:Improve this empty state... */}
 				{!activeItem && (
 					<div className={styles.emptyState}>

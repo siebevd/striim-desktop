@@ -39,12 +39,12 @@ export default class InfoBar extends Component {
 
 		return (
 			<div className={styles.container}>
-				<Controls
+				{/*<Controls
 					playing={playing}
 					togglePlay={this.togglePlay}
 					activeItem={activeItem}
 					progress={progress}
-				/>
+				/>*/}
 				<Playlist />
 			</div>
 		);
