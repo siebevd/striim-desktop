@@ -111,6 +111,7 @@ export default class YoutubePlayer extends Component {
 							autohide: 1,
 							cc_load_policy: 0,
 							autoplay: 1,
+							mute: 1,
 							showinfo: 0,
 							controls: 0,
 							// controls: 1,

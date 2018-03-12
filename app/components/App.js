@@ -4,10 +4,10 @@ import "../styling/variables.css";
 import "../styling/reset.css";
 import styles from "./App.css";
 
-import Controls from "components/Controls/Controls";
-import YouTubePlayer from "components/YoutubePlayer/YoutubePlayer";
-import Search from "components/Search/Search";
-import InfoBar from "components/InfoBar/InfoBar";
+import Controls from "components/Controls/Controls.jsx";
+import YouTubePlayer from "components/YoutubePlayer/YoutubePlayer.jsx";
+import Search from "components/Search/Search.jsx";
+import InfoBar from "components/InfoBar/InfoBar.jsx";
 import DevTools from "mobx-react-devtools";
 
 import { inject, observer } from "mobx-react";

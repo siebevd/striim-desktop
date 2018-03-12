@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./Playlist.css";
 import scrollTo from "utils/scrollTo.js";
 
-import PlaylistItem from "components/PlaylistItem/PlaylistItem";
+import PlaylistItem from "components/PlaylistItem/PlaylistItem.jsx";
 
 @inject("playlistStore", "playerStore")
 @observer

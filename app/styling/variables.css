@@ -1,8 +1,9 @@
 :root {
-	--lightBackground: #0b141f;
-	--darkBackground: #05090f;
-	--midBackground: #060d14;
+	--lightBackground: #051319;
+	--darkBackground: #020c10;
+
 	--highlightColor: #09f0ac;
+	--darkHighlight: #0b191f;
 
 	--textColor: #ececec;
 	--lightColor: #ffffff;

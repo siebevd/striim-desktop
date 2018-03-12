@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
 import styles from "./InfoBar.css";
 
-import Controls from "components/Controls/Controls";
-import Playlist from "components/Playlist/Playlist";
+import Controls from "components/Controls/Controls.jsx";
+import Playlist from "components/Playlist/Playlist.jsx";
 
 @inject("playerStore")
 @observer
