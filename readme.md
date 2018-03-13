@@ -1,9 +1,9 @@
 # Striim
 
-*WIP* | Mac (Electron) App to Watch/Listen to youtube videos. Ability to control videos through keyboard shortcuts 🎧
-
+_WIP_ | Mac (Electron) App to Watch/Listen to youtube videos. Ability to control videos through keyboard shortcuts 🎧
 
 ## Build Setup
+
 ```
 # Install dependencies
 npm install
@@ -27,4 +27,5 @@ npm run pretty
 ```
 
 ## Other Notes
+
 `Prettier` will automatically be run as a precommit hook.

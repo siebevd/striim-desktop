@@ -62,7 +62,7 @@ autorun(() => {
 	} else {
 		// Get rid of the height from the playlist
 		// remote.setSize(800, 515, true);
-		resizeWindow(800, 515);
+		resizeWindow(800, 510);
 	}
 });
 

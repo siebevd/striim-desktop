@@ -4,14 +4,15 @@
 
 .container {
 	width: 100%;
-	/* height: ; */
-	background: red;
+	height: 80px;
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
+	padding-bottom: 20px;
 	position: absolute;
-	box-shadow: 5px 0 10px 0px rgba(0, 0, 0, 0.6);
 	z-index: 2;
-	bottom: 50px;
+	bottom: 60px;
+	opacity: 0.5;
+	background-image: linear-gradient(to top, #000000, rgba(0, 0, 0, 0));
 }
 
 /* ----------- */
