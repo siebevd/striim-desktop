@@ -1,29 +1,48 @@
-.App {
-  text-align: center;
-  -webkit-app-region: drag;
+body {
+	margin: 0;
+	/* TODO: should probably incude roboto, for macs that don't have the font*/
+	font-family: Roboto, sans-serif;
+	background: var(--lightBackground);
+	color: var(--textColor);
 }
 
-.logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/* ------------- */
+/*    Base UI    */
+/* ------------- */
+
+.container {
+	display: flex;
+	flex-direction: column;
+	background: var(--darkBackground);
 }
 
-.header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.titleBar {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 30px;
+	-webkit-app-region: drag;
 }
 
-.title {
-  font-size: 1.5em;
+/* ------------- */
+/*  Empty State  */
+/* ------------- */
+
+.emptyState {
+	/* Use the same dimensions as the youtube player */
+	width: 100%;
+	padding-bottom: 56.25%;
+	height: 0;
+	position: relative;
 }
 
-.intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.emptyStateContent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

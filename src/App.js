@@ -35,6 +35,10 @@ class App extends Component {
 		this.props.playerStore.setPlayState(playState);
 	};
 
+	togglePlay = () => {
+		console.log("Toggle Play");
+	};
+
 	/**
 	 * Renders
 	 */
